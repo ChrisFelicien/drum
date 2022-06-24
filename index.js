@@ -7,6 +7,14 @@ const handleClick = function (e) {
   const buttonValue = button.textContent;
   playSong(buttonValue);
 };
+const handleKeydown = function (e) {
+  const btns = [...buttons.children];
+  btns.forEach((btn) => {
+    if (!btn.classList.contains(e.key)) return;
+    const buttonValue = e.key;
+    playSong(buttonValue);
+  });
+};
 
 const playSong = function (btn) {
   const son = `./song/${btn}.mp3`;
@@ -16,13 +24,14 @@ const playSong = function (btn) {
 
 // click Event
 buttons.addEventListener("click", handleClick);
-
 // Key envent
-document.addEventListener("keydown", (e) => {
-  const btns = [...buttons.children];
-  btns.forEach((btn) => {
-    if (!btn.classList.contains(e.key)) return;
-    const buttonValue = e.key;
-    playSong(buttonValue);
-  });
-});
+document.addEventListener("keydown", handleKeydown);
+
+// (e) => {
+//   const btns = [...buttons.children];
+//   btns.forEach((btn) => {
+//     if (!btn.classList.contains(e.key)) return;
+//     const buttonValue = e.key;
+//     playSong(buttonValue);
+//   });
+// };
